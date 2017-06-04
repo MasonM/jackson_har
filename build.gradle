@@ -1,0 +1,21 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+jar {
+    manifest {
+        attributes('Main-Class': 'com.github.masonm.jackson_har.JacksonHar')
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "com.fasterxml.jackson.core:jackson-core:2.6.1"
+    compile "com.fasterxml.jackson.core:jackson-databind:2.6.1"
+}
